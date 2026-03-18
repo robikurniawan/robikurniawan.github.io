@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Achievements and awards - Robi Kurniawan">
+    <meta name="author" content="Robi Kurniawan">
+    <title>Achievements — Robi Kurniawan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">robikurniawan.github.io</a>
+            <button class="nav-toggle" aria-label="Toggle menu" onclick="toggleNav()">
+                <span class="nav-toggle-inner">
+                    <span class="line line-1"></span>
+                    <span class="line line-2"></span>
+                </span>
+            </button>
+        </div>
+    </nav>
+    <div class="nav-overlay" id="navOverlay">
+        <ul class="nav-links">
+            <li><a href="index.html" onclick="closeNav()">Home</a></li>
+            <li><a href="index.html#home" onclick="closeNav()">About</a></li>
+            <li><a href="works.html" onclick="closeNav()">Works</a></li>
+            <li><a href="achievements.html" onclick="closeNav()">Achievements</a></li>
+            <li><a href="blog/index.html" onclick="closeNav()">Blog</a></li>
+        </ul>
+    </div>
+
+    <section style="padding-top: 6rem;">
+        <h2 class="section-title">Achievements</h2>
+        <div id="achievementsList"></div>
+    </section>
+
+    <footer>
+        <p>Copyright &copy; 2025 Robi Kurniawan<br>Dev With <i class="fas fa-heart heart"></i></p>
+    </footer>
+
+    <script>
+        function toggleNav() {
+            const overlay = document.getElementById('navOverlay');
+            const btn = document.querySelector('.nav-toggle');
+            overlay.classList.toggle('active');
+            btn.classList.toggle('active');
+            document.body.style.overflow = overlay.classList.contains('active') ? 'hidden' : '';
+        }
+        function closeNav() {
+            document.getElementById('navOverlay').classList.remove('active');
+            document.querySelector('.nav-toggle').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        window.addEventListener('scroll', () => {
+            document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
+        });
+
+        fetch('data/achievements.json')
+            .then(r => r.json())
+            .then(items => {
+                document.getElementById('achievementsList').innerHTML = items.map((a, i) => `
+                    <div class="achievement">
+                        <div class="achievement-image">
+                            <img src="${a.image}" alt="${a.title}" loading="lazy">
+                        </div>
+                        <div class="achievement-content">
+                            <h2><span>${a.title}</span></h2>
+                            <h6>${a.subtitle}</h6>
+                            <p>${a.description}</p>
+                            <a href="${a.link}" target="_blank" class="btn btn-primary"><i class="fas fa-external-link-alt"></i> Read more</a>
+                        </div>
+                    </div>
+                `).join('');
+            })
+            .catch(() => document.getElementById('achievementsList').innerHTML = '<p style="color:var(--text-muted)">Gagal memuat.</p>');
+    </script>
+</body>
+</html>

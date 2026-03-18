@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Blog Robi Kurniawan - Artikel tentang teknologi, web development, dan pengalaman.">
+    <meta name="author" content="Robi Kurniawan">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://robikurniawan.github.io/blog/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Blog — Robi Kurniawan">
+    <meta property="og:description" content="Blog Robi Kurniawan - Artikel tentang teknologi, web development, dan pengalaman.">
+    <meta property="og:url" content="https://robikurniawan.github.io/blog/">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Blog — Robi Kurniawan">
+    <title>Blog — Robi Kurniawan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-card: #16161f;
+            --accent: #6366f1;
+            --text-primary: #f4f4f5;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: rgba(255,255,255,0.06);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Outfit', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; }
+        .container { max-width: 800px; margin: 0 auto; padding: 4rem 2rem; }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .back { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 2rem; color: var(--text-secondary); }
+        .back:hover { color: var(--accent); }
+        h1 { font-family: 'Fira Code', monospace; margin-bottom: 2rem; }
+        .post-list { list-style: none; }
+        .post-item { padding: 1.5rem 0; border-bottom: 1px solid var(--border); }
+        .post-item:last-child { border-bottom: none; }
+        .post-item a { color: var(--text-primary); }
+        .post-item a:hover { color: var(--accent); }
+        .post-date { font-size: 0.85rem; color: var(--text-muted); font-family: 'Fira Code', monospace; }
+        .post-excerpt { color: var(--text-secondary); margin-top: 0.5rem; font-size: 0.95rem; }
+        .empty { color: var(--text-muted); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html#blog" class="back"><i class="fas fa-arrow-left"></i> Kembali</a>
+        <h1>Blog</h1>
+        <ul class="post-list" id="postList">
+            <li class="empty">Memuat...</li>
+        </ul>
+    </div>
+    <script>
+        fetch('list.txt')
+            .then(r => r.text())
+            .then(txt => {
+                const slugs = txt.split('\n').map(s => s.trim()).filter(Boolean);
+                if (slugs.length === 0) {
+                    document.getElementById('postList').innerHTML = '<li class="empty">Belum ada post.</li>';
+                    return;
+                }
+                Promise.all(slugs.map(slug =>
+                    fetch(slug + '.md').then(r => r.text()).then(md => {
+                        const m = md.match(/title:\s*(.+)/);
+                        const d = md.match(/date:\s*(.+)/);
+                        return { slug, title: m ? m[1].trim() : slug, date: d ? d[1].trim() : '' };
+                    }).catch(() => ({ slug, title: slug, date: '' }))
+                )).then(posts => {
+                    posts.sort((a, b) => b.date.localeCompare(a.date));
+                    document.getElementById('postList').innerHTML = posts.map(p => `
+                        <li class="post-item">
+                            <a href="post.html?slug=${p.slug}"><strong>${p.title}</strong></a>
+                            <div class="post-date">${p.date}</div>
+                        </li>
+                    `).join('');
+                });
+            })
+            .catch(() => document.getElementById('postList').innerHTML = '<li class="empty">Gagal memuat.</li>');
+    </script>
+</body>
+</html>

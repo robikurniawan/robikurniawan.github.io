@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Blog post by Robi Kurniawan">
+    <meta name="author" content="Robi Kurniawan">
+    <meta name="robots" content="index, follow">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Robi Kurniawan">
+    <meta name="twitter:card" content="summary">
+    <title>Blog — Robi Kurniawan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-card: #16161f;
+            --accent: #6366f1;
+            --text-primary: #f4f4f5;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: rgba(255,255,255,0.06);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Outfit', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.7; }
+        .container { max-width: 720px; margin: 0 auto; padding: 4rem 2rem; }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .back { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 2rem; color: var(--text-secondary); }
+        .back:hover { color: var(--accent); }
+        .post-content { font-size: 1.05rem; }
+        .post-content h1 { font-size: 2rem; margin: 2rem 0 1rem; }
+        .post-content h2 { font-size: 1.5rem; margin: 1.5rem 0 0.75rem; }
+        .post-content h3 { font-size: 1.25rem; margin: 1.25rem 0 0.5rem; }
+        .post-content p { margin-bottom: 1rem; }
+        .post-content ul, .post-content ol { margin: 0 0 1rem 1.5rem; }
+        .post-content code { background: var(--bg-card); padding: 0.2em 0.4em; border-radius: 4px; font-family: 'Fira Code', monospace; font-size: 0.9em; }
+        .post-content pre { background: var(--bg-card); padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem; }
+        .post-content pre code { background: none; padding: 0; }
+        .post-content blockquote { border-left: 4px solid var(--accent); padding-left: 1rem; margin: 1rem 0; color: var(--text-secondary); }
+        .post-meta { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2rem; }
+        .loading { color: var(--text-muted); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back"><i class="fas fa-arrow-left"></i> Semua Post</a>
+        <div id="postMeta" class="post-meta"></div>
+        <article id="postContent" class="post-content">
+            <span class="loading">Memuat...</span>
+        </article>
+    </div>
+    <script>
+        const params = new URLSearchParams(location.search);
+        const slug = params.get('slug');
+        if (!slug) {
+            document.getElementById('postContent').innerHTML = '<p>Post tidak ditemukan.</p>';
+        } else {
+            fetch(`${slug}.md`)
+                .then(r => {
+                    if (!r.ok) throw new Error('Not found');
+                    return r.text();
+                })
+                .then(md => {
+                    const lines = md.split('\n');
+                    let content = md;
+                    let title = slug;
+                    let date = '';
+                    let description = '';
+                    if (lines[0] === '---') {
+                        const end = lines.indexOf('---', 1);
+                        if (end > 0) {
+                            const front = lines.slice(1, end).join('\n');
+                            content = lines.slice(end + 1).join('\n');
+                            const titleMatch = front.match(/title:\s*(.+)/);
+                            const dateMatch = front.match(/date:\s*(.+)/);
+                            const descMatch = front.match(/description:\s*(.+)/);
+                            if (titleMatch) title = titleMatch[1].trim();
+                            if (dateMatch) date = dateMatch[1].trim();
+                            if (descMatch) description = descMatch[1].trim();
+                        }
+                    }
+                    const pageTitle = title + ' — Blog';
+                    const pageUrl = location.href;
+                    document.title = pageTitle;
+                    document.getElementById('postMeta').textContent = date;
+                    document.getElementById('postContent').innerHTML = marked.parse(content);
+
+                    const desc = description || content.replace(/[#*`]/g,'').substring(0, 160) + '...';
+                    const metaDesc = document.querySelector('meta[name="description"]');
+                    if (metaDesc) metaDesc.setAttribute('content', desc);
+
+                    const ogTitle = document.querySelector('meta[property="og:title"]') || document.createElement('meta');
+                    ogTitle.setAttribute('property', 'og:title');
+                    ogTitle.setAttribute('content', pageTitle);
+                    if (!ogTitle.parentNode) document.head.appendChild(ogTitle);
+
+                    const ogDesc = document.querySelector('meta[property="og:description"]') || document.createElement('meta');
+                    ogDesc.setAttribute('property', 'og:description');
+                    ogDesc.setAttribute('content', desc);
+                    if (!ogDesc.parentNode) document.head.appendChild(ogDesc);
+
+                    const ogUrl = document.querySelector('meta[property="og:url"]') || document.createElement('meta');
+                    ogUrl.setAttribute('property', 'og:url');
+                    ogUrl.setAttribute('content', pageUrl);
+                    if (!ogUrl.parentNode) document.head.appendChild(ogUrl);
+
+                    const canonical = document.querySelector('link[rel="canonical"]') || document.createElement('link');
+                    canonical.setAttribute('rel', 'canonical');
+                    canonical.setAttribute('href', pageUrl);
+                    if (!canonical.parentNode) document.head.appendChild(canonical);
+
+                    const jsonLd = {
+                        "@context": "https://schema.org",
+                        "@type": "BlogPosting",
+                        "headline": title,
+                        "datePublished": date,
+                        "author": { "@type": "Person", "name": "Robi Kurniawan" },
+                        "publisher": { "@type": "Person", "name": "Robi Kurniawan" }
+                    };
+                    const script = document.createElement('script');
+                    script.type = 'application/ld+json';
+                    script.text = JSON.stringify(jsonLd);
+                    document.head.appendChild(script);
+                })
+                .catch(() => {
+                    document.getElementById('postContent').innerHTML = '<p>Post tidak ditemukan.</p>';
+                });
+        }
+    </script>
+</body>
+</html>

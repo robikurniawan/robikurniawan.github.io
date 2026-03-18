@@ -1,0 +1,170 @@
+[
+  {
+    "image": "img/portfolio/eproc.png",
+    "title": "e-Procurement System",
+    "type": "Web Application",
+    "tech": ["Laravel", "Lumen", "Vue", "MySQL"],
+    "link": null
+  },
+  {
+    "image": "img/portfolio/smile.png",
+    "title": "ERP Garage",
+    "type": "Web Application",
+    "tech": ["Laravel", "Lumen", "Vue", "MySQL"],
+    "link": null
+  },
+  {
+    "image": "img/portfolio/bosowa.png",
+    "title": "Security Monitoring System",
+    "type": "Web Application",
+    "tech": ["Next.js", "Tailwind CSS", "Nest JS", "MySQL"],
+    "link": null
+  },
+  {
+    "image": "img/portfolio/office.png",
+    "title": "e-Office & SSO ",
+    "type": "Web Application",
+    "tech": ["Next.js", "Tailwind CSS", "Nest JS", "MySQL"],
+    "link": null
+  },
+  {
+    "image": "img/portfolio/cabo.png",
+    "title": "Transportation Management System",
+    "type": "Web Application",
+    "tech": ["Next.js", "Tailwind CSS", "Nest JS", "MySQL"],
+    "link": null
+  },
+  {
+    "image": "img/portfolio/narai.png",
+    "title": "Narai AI Agent",
+    "type": "Web Application",
+    "tech": ["Next.js", "Tailwind CSS", "Nest JS", "MySQL"],
+    "link": "https://narai.id"
+  },
+  {
+    "image": "img/portfolio/siaplulus.png",
+    "title": "Tryout CAT ",
+    "type": "Web Application",
+    "tech": ["Laravel", "Lumen", "Vue", "MySQL"],
+    "link": "https://siaplulus.id"
+  },
+  {
+    "image": "img/portfolio/perisaiku.png",
+    "title": "M-Health System ",
+    "type": "Web Application",
+    "tech": ["Laravel", "Lumen", "Vue", "MySQL"],
+    "link": "https://perisaiku.com"
+  },
+  {
+    "image": "img/portfolio/soppeng.png",
+    "title": "Employee Construction Mapping",
+    "type": "Web Application",
+    "tech": ["Laravel", "Lumen", "Vue", "MySQL"],
+    "link": null
+  },
+  {
+    "image": "img/portfolio/arsip.png",
+    "title": "e-Archive - Bank XXX",
+    "type": "Web Application",
+    "tech": ["Laravel", "Lumen", "Vue", "Socket", "MySQL"],
+    "link": null
+  },
+  {
+    "image": "img/portfolio/port-caleg.png",
+    "title": "VotersLink (Election System)",
+    "type": "Web & Mobile",
+    "tech": ["Laravel", "Lumen", "Vue", "Socket", "MySQL"],
+    "link": "https://awm.qorehouse.com"
+  },
+  {
+    "image": "img/portfolio/port-ss.jpg",
+    "title": "Smartschool System",
+    "type": "Web & Mobile",
+    "tech": ["Laravel", "Lumen", "Ajax", "MySQL", "Android", "Kotlin"],
+    "link": "https://smartschool-polman.id/"
+  },
+  {
+    "image": "img/portfolio/port-sys-montree.jpg",
+    "title": "Montree Planting System",
+    "type": "Web Application",
+    "tech": ["Laravel", "Ajax", "MySQL", "GIS", "Mapping"],
+    "link": "https://montree.id/login"
+  },
+  {
+    "image": "img/portfolio/port-montree.jpg",
+    "title": "Montree Web",
+    "type": "Web Application",
+    "tech": ["Laravel", "Ajax", "MySQL"],
+    "link": "https://montree.id/"
+  },
+  {
+    "image": "img/portfolio/port-bakaumu.jpg",
+    "title": "BakauMU Web",
+    "type": "Web Application",
+    "tech": ["Laravel", "Ajax", "MySQL"],
+    "link": "https://bakaumu.org/"
+  },
+  {
+    "image": "img/portfolio/port-ppdb.jpg",
+    "title": "New Student Acceptance System",
+    "type": "Web Application",
+    "tech": ["Laravel 8", "Ajax", "MySQL"],
+    "link": "https://ppdb.elayanan.info/home/dashboard"
+  },
+  {
+    "image": "img/portfolio/port-siakad.png",
+    "title": "Academic College Integrated System",
+    "type": "Web Application",
+    "tech": ["Laravel 8", "Ajax", "MySQL"],
+    "link": "http://siakad.iakntoraja.ac.id/v2"
+  },
+  {
+    "image": "img/portfolio/port-klinik.jpg",
+    "title": "Clinic Management System",
+    "type": "Web Application",
+    "tech": ["Codeigniter 3", "Ajax", "MySQL"],
+    "link": "https://siklinik.qorehouse.com/"
+  },
+  {
+    "image": "img/portfolio/port-sitorang.jpg",
+    "title": "Procurement Monitoring and Evaluation System",
+    "type": "Web Application",
+    "tech": [],
+    "link": "http://sitorang-makassar.id/"
+  },
+  {
+    "image": "img/portfolio/port-sikper-2.jpg",
+    "title": "National border area information system",
+    "type": "Web Application",
+    "tech": [],
+    "link": "http://sikper.id/"
+  },
+  {
+    "image": "img/portfolio/port-peternakan.jpg",
+    "title": "Livestock and Animal Health Service Web Application",
+    "type": "Web Application",
+    "tech": [],
+    "link": "http://disnakkeswan.sulselprov.go.id/"
+  },
+  {
+    "image": "img/portfolio/port-pariwisata.jpg",
+    "title": "Web Department of Culture and Tourism",
+    "type": "Website Profile",
+    "tech": [],
+    "link": "http://disbudpar.sulselprov.go.id/"
+  },
+  {
+    "image": "img/portfolio/port-simpeg.jpg",
+    "title": "Employeement Management System",
+    "type": "Web Application",
+    "tech": [],
+    "link": "https://simpeg.qorehouse.com/"
+  },
+  {
+    "image": "img/portfolio/port-ekinerja.jpg",
+    "title": "Electronic Employee Performance Web Application",
+    "type": "Web Application",
+    "tech": [],
+    "link": "https://ekinerja.qorehouse.com/"
+  }
+]
