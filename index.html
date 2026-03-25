@@ -11,8 +11,12 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Fira+Code:wght@400;500;600&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
 
     <style>
         :root {
@@ -180,7 +184,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 6rem 2rem 4rem;
+            padding: 6rem 2rem 2rem;
             position: relative;
             overflow: hidden;
         }
@@ -202,7 +206,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: radial-gradient(ellipse 80% 70% at 50% 50%, transparent 40%, rgba(0,0,0,0.6) 100%);
+            background: radial-gradient(ellipse 90% 80% at 50% 40%, transparent 50%, rgba(10,10,15,0.4) 100%);
             pointer-events: none;
         }
 
@@ -354,6 +358,10 @@
             padding: 4rem 2rem;
         }
 
+        #coding-activity {
+            padding-top: 0;
+        }
+
         .section-title {
             font-size: 2rem;
             font-weight: 700;
@@ -371,252 +379,579 @@
             border-radius: 2px;
         }
 
-        /* Portfolio Masonry */
-        .portfolio-grid {
-            column-count: 3;
-            column-gap: 1.5rem;
-        }
-
-        .portfolio-card {
-            break-inside: avoid;
-            margin-bottom: 1.5rem;
-            background: var(--bg-card);
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            transition: all 0.3s ease;
-        }
-
-        .portfolio-card:hover {
-            background: var(--bg-card-hover);
-            border-color: rgba(99, 102, 241, 0.3);
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .portfolio-card-image {
-            position: relative;
-            display: block;
-            overflow: hidden;
-        }
-
-        .portfolio-card-image::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.65);
-            transition: opacity 0.3s ease;
-        }
-
-        .portfolio-card:hover .portfolio-card-image::after {
-            opacity: 0;
-        }
-
-        .portfolio-card img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .portfolio-card:hover img {
-            transform: scale(1.03);
-        }
-
-        .portfolio-card-body {
-            padding: 1.25rem;
-        }
-
-        .portfolio-badges {
+        /* WakaTime */
+        .wakatime-stack {
             display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-bottom: 10px;
+            flex-direction: column;
+            gap: 1.5rem;
         }
 
-        .badge {
-            font-size: 0.7rem;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-weight: 500;
+        .wakatime-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem 1.75rem;
+        }
+
+        .wakatime-meta {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1.25rem;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .wakatime-meta a {
+            color: var(--accent-secondary);
+            text-decoration: none;
+        }
+
+        .wakatime-meta a:hover {
+            text-decoration: underline;
+        }
+
+        .wakatime-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.75rem;
+        }
+
+        .wakatime-stat {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 1rem 1.1rem;
+            border: 1px solid var(--border);
+        }
+
+        .wakatime-stat .label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .wakatime-stat .value {
+            font-size: 1.15rem;
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-primary);
+        }
+
+        .wakatime-langs h3 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
             font-family: 'JetBrains Mono', monospace;
         }
 
-        .badge-primary {
-            background: rgba(99, 102, 241, 0.2);
-            color: var(--accent);
+        .wakatime-lang-row {
+            margin-bottom: 0.85rem;
         }
 
-        .badge-tech {
-            background: rgba(255, 255, 255, 0.06);
-            color: var(--text-secondary);
+        .wakatime-lang-row:last-child {
+            margin-bottom: 0;
         }
 
-        .portfolio-card h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-            line-height: 1.4;
-        }
-
-        .portfolio-card a {
-            color: var(--text-primary);
-            text-decoration: none;
-        }
-
-        .portfolio-card a:hover {
-            color: var(--accent);
-        }
-
-        .portfolio-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.9rem;
-            color: var(--accent);
-            margin-top: 8px;
-            text-decoration: none;
-            transition: gap 0.2s;
-        }
-
-        .portfolio-link:hover {
-            gap: 10px;
-        }
-
-        .blog-list {
+        .wakatime-lang-head {
             display: flex;
-            flex-direction: column;
-            gap: 1rem;
+            justify-content: space-between;
+            align-items: baseline;
+            font-size: 0.9rem;
+            margin-bottom: 6px;
         }
 
-        .blog-item {
-            padding: 1rem 1.25rem;
-            background: var(--bg-card);
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            transition: all 0.2s;
-        }
-
-        .blog-item:hover {
-            border-color: rgba(99, 102, 241, 0.3);
-        }
-
-        .blog-item a {
-            color: var(--text-primary);
-            text-decoration: none;
-        }
-
-        .blog-item a:hover {
-            color: var(--accent);
-        }
-
-        .blog-item .blog-date {
-            font-size: 0.85rem;
+        .wakatime-lang-head span:last-child {
             color: var(--text-muted);
             font-family: 'Fira Code', monospace;
-            margin-top: 4px;
+            font-size: 0.8rem;
         }
 
-        /* Achievement */
-        .achievement {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-            margin-bottom: 4rem;
-            padding: 2rem 0;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .achievement:last-of-type {
-            border-bottom: none;
-        }
-
-        .achievement:nth-child(even) .achievement-content {
-            order: 2;
-        }
-
-        .achievement:nth-child(even) .achievement-image {
-            order: 1;
-        }
-
-        .achievement-image {
-            position: relative;
-            border-radius: 12px;
+        .wakatime-bar {
+            height: 6px;
+            background: var(--bg-secondary);
+            border-radius: 3px;
             overflow: hidden;
         }
 
-        .achievement-image::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.65);
-            transition: opacity 0.3s ease;
-        }
-
-        .achievement:hover .achievement-image::after {
-            opacity: 0;
-        }
-
-        .achievement-image img {
-            width: 100%;
+        .wakatime-bar > span {
             display: block;
-            border-radius: 12px;
-            border: 1px solid var(--border);
+            height: 100%;
+            border-radius: 3px;
+            background: var(--gradient);
         }
 
-        .achievement-content h2 {
-            font-size: 1.75rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .achievement-content h2 span {
-            color: var(--accent);
-        }
-
-        .achievement-content h6 {
+        .wakatime-hint,
+        .wakatime-loading {
             color: var(--text-muted);
-            font-weight: 400;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .wakatime-hint code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85em;
+            color: var(--accent-secondary);
+        }
+
+        .wakatime-range {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: 'Fira Code', monospace;
             margin-bottom: 1rem;
+            text-transform: capitalize;
         }
 
-        .achievement-content p {
+        /* WakaTime unified dashboard */
+        .wakatime-dash {
+            background: rgba(22, 22, 31, 0.55);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 14px;
+            padding: 1.5rem 1.75rem 1.75rem;
+            max-width: 100%;
+        }
+
+        .wt-dash-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.25rem;
+        }
+
+        .wt-dash-title-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .wt-dash-title-row .fab {
+            font-size: 1.5rem;
+            color: #f4f4f5;
+        }
+
+        .wt-dash-title-text h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0 0 4px;
+            letter-spacing: -0.02em;
+        }
+
+        .wt-dash-title-text p {
+            margin: 0;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.45;
+            max-width: 36rem;
+        }
+
+        .wt-dash-handle {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-family: 'Fira Code', monospace;
+            padding-top: 2px;
+        }
+
+        .wt-dash-handle a {
             color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            text-align: justify;
+            text-decoration: none;
         }
 
-        .btn {
+        .wt-dash-handle a:hover {
+            color: var(--accent-secondary);
+        }
+
+        .wt-metrics-row {
+            display: grid;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .wt-metrics-row.lg {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .wt-metrics-row.sm {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        @media (max-width: 900px) {
+            .wt-metrics-row.lg {
+                grid-template-columns: 1fr;
+            }
+
+            .wt-metrics-row.sm {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .wt-metrics-row.sm {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .wt-metric {
+            background: #12121a;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1rem 1.15rem;
+        }
+
+        .wt-metric .lbl {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .wt-metric .val {
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: #e9c46a;
+            font-family: 'JetBrains Mono', monospace;
+            line-height: 1.2;
+        }
+
+        .wt-metrics-row.sm .wt-metric .val {
+            font-size: 1.1rem;
+        }
+
+        .wt-chart-block {
+            margin-top: 1.35rem;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .wt-chart-head {
+            margin-bottom: 0.75rem;
+        }
+
+        .wt-chart-head h4 {
+            margin: 0;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .wt-chart-head .sub {
+            margin: 6px 0 0;
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            font-family: 'Fira Code', monospace;
+        }
+
+        .wt-chart-wrap {
+            width: 100%;
+            overflow-x: auto;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: var(--bg-secondary);
+        }
+
+        .wt-chart-wrap svg {
+            display: block;
+            min-width: 320px;
+            width: 100%;
+            height: auto;
+        }
+
+        .wt-chart-wrap .wt-line {
+            fill: none;
+            stroke: #22d3ee;
+            stroke-width: 2.25;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .wt-chart-wrap .wt-axis {
+            fill: var(--text-muted);
+            font-family: 'Fira Code', 'JetBrains Mono', monospace;
+            font-size: 9px;
+        }
+
+        .wt-chart-wrap .wt-grid {
+            stroke: var(--border);
+            stroke-width: 1;
+        }
+
+        .wt-chart-wrap .wt-dot {
+            fill: #22d3ee;
+            stroke: #12121a;
+            stroke-width: 1.5;
+        }
+
+        .wt-chart-tz {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            font-family: 'Fira Code', monospace;
+            margin-top: 0.65rem;
+        }
+
+        .wt-pinned-block {
+            margin-top: 1.35rem;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .wt-pinned-block h4 {
+            margin: 0 0 1rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .wt-pinned-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.85rem;
+        }
+
+        @media (max-width: 640px) {
+            .wt-pinned-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .wt-pin-card {
+            background: #12121a;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1rem 1.1rem;
+            text-align: left;
+            transition: border-color 0.2s;
+        }
+
+        .wt-pin-card:hover {
+            border-color: rgba(233, 196, 106, 0.25);
+        }
+
+        .wt-pin-card h5 {
+            margin: 0 0 0.5rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .wt-pin-card .desc {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.45;
+            margin-bottom: 0.85rem;
+        }
+
+        .wt-pin-meta {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.75rem 1rem;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .wt-pin-meta .lang {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 12px 24px;
-            border-radius: 10px;
-            font-weight: 600;
+            gap: 6px;
+        }
+
+        .wt-pin-meta .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .wt-dash-foot {
+            margin-top: 1.25rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .wt-dash-foot a {
+            color: var(--accent-secondary);
             text-decoration: none;
-            transition: all 0.3s ease;
-            font-family: inherit;
-            border: none;
-            cursor: pointer;
         }
 
-        .btn-primary {
-            background: var(--accent);
-            color: white;
+        .wt-heatmap-note {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-top: 0.85rem;
+            max-width: 52rem;
         }
 
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px var(--accent-glow);
+        .wt-heatmap-note a {
+            color: var(--accent-secondary);
+            text-decoration: none;
+        }
+
+        .wt-heatmap-note code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9em;
+        }
+
+        /* ── Visitor widget ── */
+        .visitor-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 2rem 1rem;
+        }
+
+        .visitor-card {
+            background: rgba(22, 22, 31, 0.5);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 14px;
+            padding: 1.5rem 1.75rem;
+        }
+
+        .visitor-head {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1.25rem;
+        }
+
+        .visitor-head i {
+            font-size: 1.1rem;
+            color: var(--accent-secondary);
+        }
+
+        .visitor-head h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
+            letter-spacing: -0.01em;
+        }
+
+        .visitor-head .visitor-live {
+            margin-left: auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.72rem;
+            color: #4ade80;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .visitor-head .visitor-live::before {
+            content: '';
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #4ade80;
+            animation: livePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes livePulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(74,222,128,0.5); }
+            50% { opacity: 0.7; box-shadow: 0 0 0 4px rgba(74,222,128,0); }
+        }
+
+        .visitor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .visitor-stat {
+            background: rgba(18, 18, 26, 0.7);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.85rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .visitor-stat .vs-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .visitor-stat .vs-icon.loc  { background: rgba(99,102,241,0.15); color: #818cf8; }
+        .visitor-stat .vs-icon.os   { background: rgba(34,211,238,0.15); color: #22d3ee; }
+        .visitor-stat .vs-icon.br   { background: rgba(168,85,247,0.15); color: #a855f7; }
+        .visitor-stat .vs-icon.scr  { background: rgba(233,196,106,0.15); color: #e9c46a; }
+        .visitor-stat .vs-icon.tz   { background: rgba(74,222,128,0.15); color: #4ade80; }
+        .visitor-stat .vs-icon.pv   { background: rgba(251,146,60,0.15); color: #fb923c; }
+
+        .visitor-stat .vs-text {
+            min-width: 0;
+        }
+
+        .visitor-stat .vs-label {
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 2px;
+        }
+
+        .visitor-stat .vs-value {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-family: 'JetBrains Mono', monospace;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .visitor-stat .vs-value.loading {
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .visitor-flag {
+            font-style: normal;
+            font-size: 1.1rem;
+        }
+
+        .visitor-foot {
+            margin-top: 1rem;
+            font-size: 0.68rem;
+            color: var(--text-muted);
+            opacity: 0.6;
+        }
+
+        @media (max-width: 640px) {
+            .visitor-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 380px) {
+            .visitor-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* Footer */
         footer {
-            background: var(--bg-secondary);
+            background: transparent;
             padding: 2rem;
             text-align: center;
-            margin-top: 4rem;
-            border-top: 1px solid var(--border);
+            margin-top: 1rem;
         }
 
         footer p {
@@ -634,37 +969,158 @@
             50% { opacity: 0.6; }
         }
 
-        /* Responsive */
-        @media (min-width: 1400px) {
-            .portfolio-grid {
-                column-count: 4;
-            }
+        /* ── Ambient blur gradient blobs ── */
+        .gradient-canvas {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
         }
 
-        @media (max-width: 1024px) {
-            .portfolio-grid {
-                column-count: 2;
-            }
+        .g-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(110px);
+            opacity: 0;
+            will-change: transform, opacity;
+            animation: blobIn 1.6s ease-out forwards;
+        }
+
+        .g-blob--1 {
+            width: 520px;
+            height: 520px;
+            background: radial-gradient(circle, rgba(99,102,241,0.22) 0%, transparent 70%);
+            top: -8%;
+            left: -6%;
+            animation: blobDrift1 18s ease-in-out infinite alternate, blobIn 1.6s ease-out forwards;
+        }
+
+        .g-blob--2 {
+            width: 440px;
+            height: 440px;
+            background: radial-gradient(circle, rgba(34,211,238,0.18) 0%, transparent 70%);
+            top: 30%;
+            right: -10%;
+            animation: blobDrift2 22s ease-in-out infinite alternate, blobIn 1.6s 0.3s ease-out forwards;
+        }
+
+        .g-blob--3 {
+            width: 360px;
+            height: 360px;
+            background: radial-gradient(circle, rgba(168,85,247,0.16) 0%, transparent 70%);
+            bottom: 10%;
+            left: 15%;
+            animation: blobDrift3 20s ease-in-out infinite alternate, blobIn 1.6s 0.6s ease-out forwards;
+        }
+
+        .g-blob--4 {
+            width: 280px;
+            height: 280px;
+            background: radial-gradient(circle, rgba(233,196,106,0.12) 0%, transparent 70%);
+            bottom: -5%;
+            right: 20%;
+            animation: blobDrift4 16s ease-in-out infinite alternate, blobIn 1.6s 0.9s ease-out forwards;
+        }
+
+        @keyframes blobIn {
+            to { opacity: 1; }
+        }
+
+        @keyframes blobDrift1 {
+            0%   { transform: translate(0, 0) scale(1); }
+            50%  { transform: translate(60px, 40px) scale(1.12); }
+            100% { transform: translate(-30px, 80px) scale(0.95); }
+        }
+
+        @keyframes blobDrift2 {
+            0%   { transform: translate(0, 0) scale(1); }
+            50%  { transform: translate(-50px, 60px) scale(1.08); }
+            100% { transform: translate(40px, -30px) scale(0.92); }
+        }
+
+        @keyframes blobDrift3 {
+            0%   { transform: translate(0, 0) scale(1); }
+            50%  { transform: translate(40px, -50px) scale(1.1); }
+            100% { transform: translate(-60px, 20px) scale(0.97); }
+        }
+
+        @keyframes blobDrift4 {
+            0%   { transform: translate(0, 0) scale(1); }
+            50%  { transform: translate(-30px, -40px) scale(1.15); }
+            100% { transform: translate(50px, 30px) scale(0.9); }
         }
 
         @media (max-width: 768px) {
-            .portfolio-grid {
-                column-count: 1;
-            }
+            .g-blob { filter: blur(80px); }
+            .g-blob--1 { width: 320px; height: 320px; }
+            .g-blob--2 { width: 260px; height: 260px; }
+            .g-blob--3 { width: 220px; height: 220px; }
+            .g-blob--4 { width: 180px; height: 180px; }
+        }
 
-            .achievement {
-                grid-template-columns: 1fr;
-            }
+        /* ── Scroll-reveal ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(36px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
 
-            .achievement:nth-child(even) .achievement-content,
-            .achievement:nth-child(even) .achievement-image {
-                order: unset;
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+
+        /* Hero entrance */
+        .hero-content {
+            animation: heroEntrance 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        @keyframes heroEntrance {
+            from {
+                opacity: 0;
+                transform: translateY(40px) scale(0.97);
+                filter: blur(6px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+
+        .hero .skills .skill-badge {
+            opacity: 0;
+            animation: badgePop 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        @keyframes badgePop {
+            from {
+                opacity: 0;
+                transform: translateY(12px) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
             }
         }
     </style>
 </head>
 
 <body>
+    <!-- Ambient gradient blobs -->
+    <div class="gradient-canvas" aria-hidden="true">
+        <div class="g-blob g-blob--1"></div>
+        <div class="g-blob g-blob--2"></div>
+        <div class="g-blob g-blob--3"></div>
+        <div class="g-blob g-blob--4"></div>
+    </div>
+
     <!-- Navigation -->
     <nav class="nav" id="nav">
         <div class="nav-inner">
@@ -719,7 +1175,71 @@
         </div>
     </header>
 
+    <section id="coding-activity" class="reveal" aria-labelledby="wakatime-heading">
+        <h2 class="section-title" id="wakatime-heading">Real Time Coding Activity</h2>
+        <div id="wakatimeMount" class="wakatime-stack" role="region" aria-live="polite">
+            <p class="wakatime-loading">Memuat statistik WakaTime…</p>
+        </div>
+    </section>
 
+    <div class="visitor-section reveal">
+        <div class="visitor-card">
+            <div class="visitor-head">
+                <i class="fas fa-signal" aria-hidden="true"></i>
+                <h3>Visitor Info</h3>
+                <span class="visitor-live">online</span>
+            </div>
+            <div class="visitor-grid" id="visitorGrid">
+                <div class="visitor-stat">
+                    <div class="vs-icon loc"><i class="fas fa-map-marker-alt"></i></div>
+                    <div class="vs-text">
+                        <div class="vs-label">Location</div>
+                        <div class="vs-value loading" id="vsLocation">detecting…</div>
+                    </div>
+                </div>
+                <div class="visitor-stat">
+                    <div class="vs-icon os"><i class="fas fa-laptop"></i></div>
+                    <div class="vs-text">
+                        <div class="vs-label">OS</div>
+                        <div class="vs-value" id="vsOS">—</div>
+                    </div>
+                </div>
+                <div class="visitor-stat">
+                    <div class="vs-icon br"><i class="fas fa-globe"></i></div>
+                    <div class="vs-text">
+                        <div class="vs-label">Browser</div>
+                        <div class="vs-value" id="vsBrowser">—</div>
+                    </div>
+                </div>
+                <div class="visitor-stat">
+                    <div class="vs-icon scr"><i class="fas fa-desktop"></i></div>
+                    <div class="vs-text">
+                        <div class="vs-label">Screen</div>
+                        <div class="vs-value" id="vsScreen">—</div>
+                    </div>
+                </div>
+                <div class="visitor-stat">
+                    <div class="vs-icon tz"><i class="fas fa-clock"></i></div>
+                    <div class="vs-text">
+                        <div class="vs-label">Timezone</div>
+                        <div class="vs-value" id="vsTimezone">—</div>
+                    </div>
+                </div>
+                <div class="visitor-stat">
+                    <div class="vs-icon pv"><i class="fas fa-eye"></i></div>
+                    <div class="vs-text">
+                        <div class="vs-label">Page Views</div>
+                        <div class="vs-value loading" id="vsPageViews">counting…</div>
+                    </div>
+                </div>
+            </div>
+            <p class="visitor-foot">Your info as seen by the browser — nothing is stored.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>Made with <span class="heart">&hearts;</span>  &copy; 2015 - <span id="footerYear"></span></p>
+    </footer>
 
     <script>
         function toggleNav() {
@@ -740,68 +1260,499 @@
             document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
         });
 
-        fetch('data/works.json')
-            .then(r => r.json())
-            .then(works => {
-                const preview = works.slice(0, 6);
-                document.getElementById('worksPreview').innerHTML = preview.map(w => `
-                    <div class="portfolio-card">
-                        <a href="${w.link || w.image}" ${w.link ? 'target="_blank"' : ''} class="portfolio-card-image">
-                            <img src="${w.image}" alt="${w.title}" loading="lazy">
-                        </a>
-                        <div class="portfolio-card-body">
-                            <div class="portfolio-badges">
-                                <span class="badge badge-primary">${w.type}</span>
-                                ${w.tech.map(t => `<span class="badge badge-tech">${t}</span>`).join('')}
-                            </div>
-                            <h3>${w.title}</h3>
-                            ${w.link ? `<a href="${w.link}" target="_blank" class="portfolio-link"><i class="fas fa-external-link-alt"></i> See Portfolio</a>` : ''}
-                        </div>
-                    </div>
-                `).join('');
-            })
-            .catch(() => document.getElementById('worksPreview').innerHTML = '<p style="color:var(--text-muted)">Gagal memuat.</p>');
-
-        fetch('data/achievements.json')
-            .then(r => r.json())
-            .then(items => {
-                document.getElementById('achievementsPreview').innerHTML = items.map(a => `
-                    <div class="achievement">
-                        <div class="achievement-image">
-                            <img src="${a.image}" alt="${a.title}" loading="lazy">
-                        </div>
-                        <div class="achievement-content">
-                            <h2><span>${a.title}</span></h2>
-                            <h6>${a.subtitle}</h6>
-                            <p>${a.description}</p>
-                            <a href="${a.link}" target="_blank" class="btn btn-primary"><i class="fas fa-external-link-alt"></i> Read more</a>
-                        </div>
-                    </div>
-                `).join('');
-            })
-            .catch(() => document.getElementById('achievementsPreview').innerHTML = '<p style="color:var(--text-muted)">Gagal memuat.</p>');
-
-        fetch('blog/list.txt')
-            .then(r => r.text())
-            .then(txt => {
-                const slugs = txt.split('\n').map(s => s.trim()).filter(Boolean).slice(0, 3);
-                if (slugs.length === 0) return;
-                Promise.all(slugs.map(slug =>
-                    fetch('blog/' + slug + '.md').then(r => r.text()).then(md => {
-                        const m = md.match(/title:\s*(.+)/);
-                        const d = md.match(/date:\s*(.+)/);
-                        return { slug, title: m ? m[1].trim() : slug, date: d ? d[1].trim() : '' };
-                    }).catch(() => ({ slug, title: slug, date: '' }))
-                )).then(posts => {
-                    document.getElementById('blogList').innerHTML = posts.map(p => `
-                        <div class="blog-item">
-                            <a href="blog/post.html?slug=${p.slug}">${p.title}</a>
-                            <div class="blog-date">${p.date}</div>
-                        </div>
-                    `).join('');
+        // Scroll-reveal observer
+        (function initReveal() {
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach((e) => {
+                    if (e.isIntersecting) {
+                        e.target.classList.add('visible');
+                        io.unobserve(e.target);
+                    }
                 });
-            })
-            .catch(() => {});
+            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+            document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+        })();
+
+        // Stagger skill badge pop-in
+        document.querySelectorAll('.hero .skills .skill-badge').forEach((b, i) => {
+            b.style.animationDelay = (0.8 + i * 0.07) + 's';
+        });
+
+        // Dynamic footer year
+        const fy = document.getElementById('footerYear');
+        if (fy) fy.textContent = new Date().getFullYear();
+
+        // ── Visitor info ──
+        (function initVisitorInfo() {
+            const ua = navigator.userAgent;
+
+            function detectOS() {
+                if (/Windows NT 10/.test(ua)) return 'Windows 10+';
+                if (/Windows NT/.test(ua)) return 'Windows';
+                if (/Mac OS X/.test(ua)) {
+                    const v = ua.match(/Mac OS X ([\d_]+)/);
+                    return 'macOS' + (v ? ' ' + v[1].replace(/_/g, '.') : '');
+                }
+                if (/Android ([\d.]+)/.test(ua)) return 'Android ' + RegExp.$1;
+                if (/iPhone|iPad/.test(ua)) {
+                    const v = ua.match(/OS ([\d_]+)/);
+                    return 'iOS' + (v ? ' ' + v[1].replace(/_/g, '.') : '');
+                }
+                if (/Linux/.test(ua)) return 'Linux';
+                if (/CrOS/.test(ua)) return 'Chrome OS';
+                return navigator.platform || '—';
+            }
+
+            function detectBrowser() {
+                if (/Edg\//.test(ua)) return 'Edge';
+                if (/OPR\/|Opera\//.test(ua)) return 'Opera';
+                if (/Brave/.test(ua)) return 'Brave';
+                if (/Firefox\//.test(ua)) return 'Firefox';
+                if (/Chrome\//.test(ua) && !/Chromium/.test(ua)) return 'Chrome';
+                if (/Safari\//.test(ua) && !/Chrome/.test(ua)) return 'Safari';
+                return '—';
+            }
+
+            const elOS = document.getElementById('vsOS');
+            const elBr = document.getElementById('vsBrowser');
+            const elScr = document.getElementById('vsScreen');
+            const elTz = document.getElementById('vsTimezone');
+            const elLoc = document.getElementById('vsLocation');
+            const elPV = document.getElementById('vsPageViews');
+
+            if (elOS) elOS.textContent = detectOS();
+            if (elBr) elBr.textContent = detectBrowser();
+            if (elScr) elScr.textContent = screen.width + ' × ' + screen.height;
+            if (elTz) {
+                try { elTz.textContent = Intl.DateTimeFormat().resolvedOptions().timeZone; }
+                catch (_) { elTz.textContent = '—'; }
+            }
+
+            // Geolocation via free API
+            if (elLoc) {
+                fetch('https://ipapi.co/json/')
+                    .then(function (r) { return r.json(); })
+                    .then(function (d) {
+                        const flag = d.country_code
+                            ? String.fromCodePoint(...[...d.country_code.toUpperCase()].map(function (c) { return 0x1F1E6 - 65 + c.charCodeAt(0); }))
+                            : '';
+                        const city = d.city || '';
+                        const country = d.country_name || '';
+                        const parts = [city, country].filter(Boolean).join(', ');
+                        elLoc.classList.remove('loading');
+                        elLoc.innerHTML = (flag ? '<span class="visitor-flag">' + flag + '</span> ' : '') + parts;
+                    })
+                    .catch(function () {
+                        elLoc.classList.remove('loading');
+                        elLoc.textContent = '—';
+                    });
+            }
+
+            // Page views from GoatCounter public API
+            if (elPV) {
+                fetch('data/analytics-config.json')
+                    .then(function (r) { return r.json(); })
+                    .then(function (cfg) {
+                        var code = cfg.goatcounterCode;
+                        if (!code) throw new Error('no code');
+                        var path = encodeURIComponent(location.pathname.replace(/\/$/, '') || '/');
+                        return fetch('https://' + code + '.goatcounter.com/counter/' + path + '.json');
+                    })
+                    .then(function (r) { return r.json(); })
+                    .then(function (d) {
+                        elPV.classList.remove('loading');
+                        elPV.textContent = d.count_unique
+                            ? d.count_unique.toLocaleString() + ' unique'
+                            : (d.count || '0');
+                    })
+                    .catch(function () {
+                        elPV.classList.remove('loading');
+                        elPV.textContent = '—';
+                    });
+            }
+
+            // Dashboard link
+            fetch('data/analytics-config.json')
+                .then(function (r) { return r.json(); })
+                .then(function (cfg) {
+                    var code = cfg.goatcounterCode;
+                    if (!code) return;
+                    var foot = document.querySelector('.visitor-foot');
+                    if (foot) {
+                        foot.innerHTML = 'Analytics powered by <a href="https://' + code +
+                            '.goatcounter.com" target="_blank" rel="noopener" style="color:var(--accent-secondary)">GoatCounter</a> — privacy-friendly, no cookies.';
+                    }
+                })
+                .catch(function () {});
+        })();
+
+        function wakatimeJsonp(url) {
+            return new Promise((resolve, reject) => {
+                const cb = '_wakatime_cb_' + Date.now() + '_' + Math.random().toString(36).slice(2);
+                const t = setTimeout(() => { cleanup(); reject(new Error('timeout')); }, 15000);
+                const script = document.createElement('script');
+                function cleanup() {
+                    clearTimeout(t);
+                    delete window[cb];
+                    if (script.parentNode) script.parentNode.removeChild(script);
+                }
+                window[cb] = (data) => { cleanup(); resolve(data); };
+                const sep = url.includes('?') ? '&' : '?';
+                script.src = url + sep + 'callback=' + cb;
+                script.onerror = () => { cleanup(); reject(new Error('jsonp failed')); };
+                document.head.appendChild(script);
+            });
+        }
+
+        function wakatimeEsc(s) {
+            if (s == null) return '';
+            return String(s)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;');
+        }
+
+        function wakatimeSafeBarColor(c) {
+            if (!c || typeof c !== 'string') return '';
+            const t = c.trim();
+            return /^#[0-9A-Fa-f]{3,8}$/.test(t) ? t : '';
+        }
+
+        function wakatimeIsDailySummariesArray(arr) {
+            const x = arr.find((i) => i && typeof i === 'object');
+            return !!(x && x.grand_total && typeof x.grand_total === 'object'
+                && x.range && typeof x.range === 'object');
+        }
+
+        function wakatimeIsLangShareArray(arr) {
+            if (!Array.isArray(arr) || !arr.length) return false;
+            const x = arr.find((i) => i && typeof i === 'object');
+            return !!(x && x.name != null && x.percent != null && !x.grand_total);
+        }
+
+        function wakatimeClassifyData(data) {
+            if (data == null) return { type: 'unknown' };
+            if (Array.isArray(data)) {
+                if (wakatimeIsDailySummariesArray(data)) return { type: 'daily', value: data };
+                if (wakatimeIsLangShareArray(data)) return { type: 'langs', value: data };
+                return { type: 'unknown' };
+            }
+            if (typeof data === 'object' && (data.grand_total || data.best_day || data.languages)) {
+                return { type: 'summary', value: data };
+            }
+            return { type: 'unknown' };
+        }
+
+        function wakatimeDedupeDailyByDate(entries) {
+            const best = new Map();
+            entries.forEach((d) => {
+                if (!d || !d.grand_total || !d.range || !d.range.date) return;
+                const date = String(d.range.date);
+                const sec = Number(d.grand_total.total_seconds) || 0;
+                const prev = best.get(date);
+                const prevSec = prev ? (Number(prev.grand_total.total_seconds) || 0) : -1;
+                if (!prev || sec > prevSec) best.set(date, d);
+            });
+            return [...best.values()].sort((a, b) => String(a.range.date).localeCompare(String(b.range.date)));
+        }
+
+        function wakatimeMergeFromPayloads(payloads) {
+            const out = { summary: null, daily: [], langs: null };
+            payloads.forEach((p) => {
+                const data = p.data !== undefined ? p.data : p;
+                const c = wakatimeClassifyData(data);
+                if (c.type === 'summary') {
+                    out.summary = c.value;
+                    const L = c.value.languages;
+                    if (Array.isArray(L) && L.length && !out.langs) out.langs = L;
+                }
+                if (c.type === 'daily') out.daily = out.daily.concat(c.value);
+                if (c.type === 'langs') out.langs = c.value;
+            });
+            out.daily = wakatimeDedupeDailyByDate(out.daily);
+            out.daily = out.daily.length ? out.daily : null;
+            return out;
+        }
+
+        /** Chronological days with hours (gaps filled with 0) for line chart */
+        function wakatimeDailySeriesForChart(dailyArr) {
+            const days = dailyArr.filter((d) => d && d.grand_total && d.range && d.range.date);
+            if (!days.length) return { points: [], maxH: 1, tz: '' };
+            const byDate = new Map();
+            days.forEach((d) => {
+                byDate.set(String(d.range.date), Number(d.grand_total.total_seconds) || 0);
+            });
+            const sorted = [...byDate.keys()].sort();
+            const start = new Date(sorted[0] + 'T12:00:00');
+            const end = new Date(sorted[sorted.length - 1] + 'T12:00:00');
+            const ymd = (dt) => {
+                const y = dt.getFullYear();
+                const m = String(dt.getMonth() + 1).padStart(2, '0');
+                const dd = String(dt.getDate()).padStart(2, '0');
+                return `${y}-${m}-${dd}`;
+            };
+            const points = [];
+            const cur = new Date(start);
+            while (cur <= end) {
+                const key = ymd(cur);
+                const sec = byDate.get(key) || 0;
+                points.push({ date: key, hours: sec / 3600 });
+                cur.setDate(cur.getDate() + 1);
+            }
+            const maxH = Math.max(...points.map((p) => p.hours), 0.25);
+            const tz = days[0].range && days[0].range.timezone ? String(days[0].range.timezone) : '';
+            return { points, maxH, tz };
+        }
+
+        function wakatimeLineChartSvg(points, maxH, tz) {
+            if (!points.length) return '';
+            const gradId = 'wtLineGrad_' + Math.random().toString(36).slice(2, 9);
+            const W = Math.max(520, 56 + points.length * 10);
+            const H = 210;
+            const padL = 50;
+            const padR = 14;
+            const padT = 14;
+            const padB = 36;
+            const innerW = W - padL - padR;
+            const innerH = H - padT - padB;
+            const n = points.length;
+            const xAt = (i) => padL + (n <= 1 ? innerW / 2 : (i / (n - 1)) * innerW);
+            const yAt = (h) => padT + innerH - (Math.min(h, maxH) / maxH) * innerH;
+
+            let dPath = '';
+            points.forEach((p, i) => {
+                const x = xAt(i);
+                const y = yAt(p.hours);
+                dPath += (i === 0 ? 'M' : 'L') + x.toFixed(2) + ' ' + y.toFixed(2) + ' ';
+            });
+            const baseY = (padT + innerH).toFixed(2);
+            const xLast = xAt(n - 1).toFixed(2);
+            const xFirst = xAt(0).toFixed(2);
+            const areaD = `${dPath.trim()} L ${xLast},${baseY} L ${xFirst},${baseY} Z`;
+
+            let dots = '';
+            points.forEach((p, i) => {
+                const tip = `${p.date} · ${p.hours.toFixed(2)} jam`;
+                dots += `<g><title>${wakatimeEsc(tip)}</title><circle class="wt-dot" cx="${xAt(i).toFixed(2)}" cy="${yAt(p.hours).toFixed(2)}" r="3.5"/></g>`;
+            });
+
+            const yTicks = [0, maxH / 2, maxH];
+            let grid = '';
+            yTicks.forEach((tv, i) => {
+                const yy = yAt(tv);
+                grid += `<line class="wt-grid" x1="${padL}" y1="${yy.toFixed(2)}" x2="${padL + innerW}" y2="${yy.toFixed(2)}"/>`;
+                const lab = i === 0 ? '0' : (i === 2 ? maxH.toFixed(1) : (maxH / 2).toFixed(1));
+                grid += `<text class="wt-axis" x="4" y="${(yy + 3).toFixed(2)}">${wakatimeEsc(lab)}h</text>`;
+            });
+
+            const xIdx = n <= 8 ? [...Array(n).keys()] : [0, Math.floor(n / 2), n - 1];
+            let xLab = '';
+            xIdx.forEach((i) => {
+                xLab += `<text class="wt-axis" x="${xAt(i).toFixed(2)}" y="${H - 8}" text-anchor="middle">${wakatimeEsc(points[i].date.slice(5))}</text>`;
+            });
+
+            return `<div class="wt-chart-wrap"><svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMinYMid meet" xmlns="http://www.w3.org/2000/svg" aria-label="Jam coding per hari">
+                <defs><linearGradient id="${gradId}" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.2"/>
+                    <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>
+                </linearGradient></defs>
+                ${grid}
+                <path d="${areaD}" fill="url(#${gradId})" stroke="none"/>
+                <path class="wt-line" d="${dPath.trim()}"/>
+                ${dots}
+                ${xLab}
+            </svg>${tz ? `<p class="wt-chart-tz">${wakatimeEsc(tz)}</p>` : ''}</div>`;
+        }
+
+        function wakatimePinnedLangDot(colorHex) {
+            const c = wakatimeSafeBarColor(colorHex);
+            return c || '#8b949e';
+        }
+
+        function renderWakaTimeDashboard(mount, merged, cfg) {
+            const handleRaw = cfg.wakatimeHandle || cfg.githubHandle || '@robikurniawan';
+            const handle = '@' + String(handleRaw).replace(/^@/, '');
+            let wtUser = String(cfg.wakatimeProfile || cfg.githubUser || 'robikurniawan').replace(/[^\w-]/g, '');
+            if (!wtUser) wtUser = 'robikurniawan';
+            const summary = merged.summary;
+            const grand = summary && summary.grand_total;
+            let totalStr = grand
+                ? (grand.human_readable_total_including_other_language || grand.human_readable_total || '—')
+                : '—';
+            let dailyStr = grand
+                ? (grand.human_readable_daily_average_including_other_language
+                    || grand.human_readable_daily_average || '—')
+                : '—';
+            let bestAll = summary && summary.best_day && summary.best_day.text ? summary.best_day.text : '—';
+
+            let codingDays = 0;
+            let weekH = 0;
+            let bestPeriodH = 0;
+            let avgPeriodH = 0;
+            let totalHPeriod = 0;
+            const dailyArr = merged.daily;
+            if (dailyArr && dailyArr.length) {
+                const filt = dailyArr.filter((d) => d && d.grand_total && d.range);
+                const secs = filt.map((d) => Number(d.grand_total.total_seconds) || 0);
+                totalHPeriod = secs.reduce((a, b) => a + b, 0) / 3600;
+                codingDays = secs.filter((s) => s > 0).length;
+                const last7 = secs.slice(-7);
+                weekH = last7.reduce((a, b) => a + b, 0) / 3600;
+                const mx = Math.max(...secs, 0);
+                bestPeriodH = Math.round((mx / 3600) * 10) / 10;
+                avgPeriodH = filt.length ? Math.round((totalHPeriod / filt.length) * 10) / 10 : 0;
+            }
+
+            if (!grand && totalHPeriod > 0) {
+                totalStr = `${Math.round(totalHPeriod * 10) / 10} hrs (period)`;
+            }
+            if (!grand && avgPeriodH > 0) {
+                dailyStr = `${avgPeriodH} hrs / day`;
+            }
+            if (bestAll === '—' && bestPeriodH > 0) {
+                bestAll = `${bestPeriodH} hrs`;
+            }
+
+            const series = dailyArr ? wakatimeDailySeriesForChart(dailyArr) : { points: [], maxH: 1, tz: '' };
+            const chartSvg = series.points.length
+                ? wakatimeLineChartSvg(series.points, series.maxH, series.tz)
+                : '';
+
+            let chartBlock = '';
+            if (chartSvg) {
+                chartBlock = `
+                <div class="wt-chart-block">
+                    <div class="wt-chart-head">
+                        <h4>Daily coding time</h4>
+                    </div>
+                    ${chartSvg}
+                </div>`;
+            }
+
+            let pinnedBlock = '';
+            const langList = merged.langs
+                ? merged.langs.filter((l) => l && l.name != null).slice(0, 6)
+                : [];
+            if (langList.length) {
+                const cards = langList.map((l) => {
+                    const pct = Number(l.percent);
+                    const pctStr = Number.isFinite(pct) ? pct.toFixed(1) : wakatimeEsc(l.percent);
+                    const dot = wakatimePinnedLangDot(l.color);
+                    const desc = `≈${pctStr}% bagian waktu editing pada periode ini · WakaTime`;
+                    return `
+                    <div class="wt-pin-card">
+                        <h5>${wakatimeEsc(l.name)}</h5>
+                        <div class="wt-pin-meta">
+                            <span class="lang"><span class="dot" style="background:${wakatimeEsc(dot)}"></span>${wakatimeEsc(l.name)}</span>
+                            <span><i class="fas fa-star" aria-hidden="true"></i> ${pctStr}%</span>
+                        </div>
+                    </div>`;
+                }).join('');
+                pinnedBlock = `
+                <div class="wt-pinned-block">
+                    <h4>Top languages</h4>
+                    <div class="wt-pinned-grid">${cards}</div>
+                </div>`;
+            }
+
+            const hasAnything = summary || series.points.length || langList.length;
+            if (!hasAnything) {
+                mount.innerHTML = '<p class="wakatime-hint">Tidak ada data WakaTime untuk ditampilkan.</p>';
+                return;
+            }
+
+            mount.innerHTML = `
+            <div class="wakatime-dash">
+                <div class="wt-dash-head">
+                    <div class="wt-dash-title-row">
+                        <i class="fas fa-chart-line" aria-hidden="true"></i>
+                        <div class="wt-dash-title-text">
+                            <h3>Coding activity</h3>
+                            <p style="margin:6px 0 0;font-size:0.88rem;color:var(--text-muted)">WakaTime</p>
+                        </div>
+                    </div>
+                    <div class="wt-dash-handle"><a href="https://wakatime.com/@${wtUser}" target="_blank" rel="noopener">${wakatimeEsc(handle)}</a></div>
+                </div>
+                <div class="wt-metrics-row lg">
+                    <div class="wt-metric"><div class="lbl">All-time total</div><div class="val">${wakatimeEsc(totalStr)}</div></div>
+                    <div class="wt-metric"><div class="lbl">Daily average</div><div class="val">${wakatimeEsc(dailyStr)}</div></div>
+                    <div class="wt-metric"><div class="lbl">Best day</div><div class="val">${wakatimeEsc(bestAll)}</div></div>
+                </div>
+                <div class="wt-metrics-row sm">
+                    <div class="wt-metric"><div class="lbl">Coding days</div><div class="val">${codingDays}</div></div>
+                    <div class="wt-metric"><div class="lbl">This week</div><div class="val">${weekH > 0 ? weekH.toFixed(1) + ' hrs' : '0'}</div></div>
+                    <div class="wt-metric"><div class="lbl">Best (period)</div><div class="val">${bestPeriodH > 0 ? bestPeriodH + ' hrs' : '—'}</div></div>
+                    <div class="wt-metric"><div class="lbl">Daily avg</div><div class="val">${avgPeriodH > 0 ? avgPeriodH + ' / day' : '—'}</div></div>
+                </div>
+                ${chartBlock}
+                ${pinnedBlock}
+            </div>`;
+        }
+
+        function wakatimeShareUrls(cfg) {
+            if (Array.isArray(cfg.shareJsonUrls) && cfg.shareJsonUrls.length) {
+                return cfg.shareJsonUrls.map((u) => String(u).trim()).filter(Boolean);
+            }
+            if (cfg.shareJsonUrl && String(cfg.shareJsonUrl).trim()) {
+                return [String(cfg.shareJsonUrl).trim()];
+            }
+            return [];
+        }
+
+        (async function loadWakaTime() {
+            const mount = document.getElementById('wakatimeMount');
+            if (!mount) return;
+            let cfg = {};
+            try {
+                const r = await fetch('data/wakatime-config.json');
+                if (r.ok) cfg = await r.json();
+            } catch (_) { /* optional file */ }
+
+            const urls = wakatimeShareUrls(cfg);
+
+            if (urls.length) {
+                try {
+                    const payloads = await Promise.all(urls.map((u) => wakatimeJsonp(u)));
+                    const merged = wakatimeMergeFromPayloads(payloads);
+                    renderWakaTimeDashboard(mount, merged, cfg);
+                } catch (_) {
+                    mount.innerHTML = '<p class="wakatime-hint">Tidak bisa memuat dari URL share JSON </p>';
+                }
+                return;
+            }
+
+            let payload = null;
+            try {
+                const sr = await fetch('data/wakatime-stats.json');
+                if (sr.ok) payload = await sr.json();
+            } catch (_) { /* no static */ }
+
+            if (!payload) {
+                mount.innerHTML = `<p class="wakatime-hint">Belum dikonfigurasi. <a href="https://wakatime.com/share/embed" target="_blank" rel="noopener">Buat Embeddable JSON</a> di WakaTime, lalu isi <code>shareJsonUrl</code> atau array <code>shareJsonUrls</code> di <code>data/wakatime-config.json</code>. Alternatif: simpan respons API sebagai <code>data/wakatime-stats.json</code> (dengan kunci <code>data</code>).</p>`;
+                return;
+            }
+            const merged = wakatimeMergeFromPayloads([payload]);
+            renderWakaTimeDashboard(mount, merged, cfg);
+        })();
+
+    </script>
+    <script>
+        (function loadGoatCounter() {
+            fetch('data/analytics-config.json')
+                .then(function (r) { return r.json(); })
+                .then(function (cfg) {
+                    var code = cfg.goatcounterCode;
+                    if (!code) return;
+                    window.goatcounter = { urlcleanup: function (p) { return p; } };
+                    var s = document.createElement('script');
+                    s.async = true;
+                    s.dataset.goatcounter = 'https://' + code + '.goatcounter.com/count';
+                    s.src = '//gc.zgo.at/count.js';
+                    document.body.appendChild(s);
+                })
+                .catch(function () {});
+        })();
     </script>
 </body>
 

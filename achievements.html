@@ -39,7 +39,7 @@
     </section>
 
     <footer>
-        <p>Copyright &copy; 2025 Robi Kurniawan<br>Dev With <i class="fas fa-heart heart"></i></p>
+        <p>Copyright &copy; 2015 - <span id="footerYear"></span><br>Dev With <i class="fas fa-heart heart"></i></p>
     </footer>
 
     <script>
@@ -77,6 +77,22 @@
                 `).join('');
             })
             .catch(() => document.getElementById('achievementsList').innerHTML = '<p style="color:var(--text-muted)">Gagal memuat.</p>');
+    </script>
+    <script>
+        (function loadGoatCounter() {
+            fetch('data/analytics-config.json')
+                .then(function (r) { return r.json(); })
+                .then(function (cfg) {
+                    var code = cfg.goatcounterCode;
+                    if (!code) return;
+                    var s = document.createElement('script');
+                    s.async = true;
+                    s.dataset.goatcounter = 'https://' + code + '.goatcounter.com/count';
+                    s.src = '//gc.zgo.at/count.js';
+                    document.body.appendChild(s);
+                })
+                .catch(function () {});
+        })();
     </script>
 </body>
 </html>
