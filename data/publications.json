@@ -1,0 +1,53 @@
+{
+  "scholar": "https://scholar.google.co.id/citations?user=u-EyMEQAAAAJ&hl=id",
+  "sinta": "https://sinta.kemdiktisaintek.go.id/authors/profile/6770083/",
+  "sintaId": "6770083",
+  "affiliation": "Universitas Megarezky",
+  "researchInterests": ["Machine Learning", "Web Technology", "Software Engineering", "Recommender System"],
+  "articles": [
+    {
+      "title": "Public Sentiment Analysis on Coronavirus Based on Twitter Opinions Using Web Scraper",
+      "authors": "R Kurniawan, A Apriliani",
+      "journal": "Jurnal INSTEK (Informatika Sains dan Teknologi)",
+      "volume": "5(1), 67",
+      "year": 2020,
+      "cited": 44,
+      "link": "https://scholar.google.co.id/citations?view_op=view_citation&hl=id&user=u-EyMEQAAAAJ&citation_for_view=u-EyMEQAAAAJ:u5HHmVD_uO8C"
+    },
+    {
+      "title": "Emotion Classification on Twitter Regarding New Normal Implementation Using Naïve Bayes Algorithm",
+      "authors": "R Kurniawan, A Apriliani",
+      "journal": "Konferensi Nasional Ilmu Komputer (KONIK) 2020",
+      "volume": "1 (ISSN: 2338-2899), 6",
+      "year": 2020,
+      "cited": 0,
+      "link": "https://scholar.google.co.id/citations?view_op=view_citation&hl=id&user=u-EyMEQAAAAJ&citation_for_view=u-EyMEQAAAAJ:d1gkVwhDpl0C"
+    }
+  ],
+  "researches": [
+    {
+      "title": "Innovation in Machine Component Learning Using Virtual Reality Technology for Workshop Practicum Preparation",
+      "role": "Leader",
+      "members": "Robi Kurniawan, Tri Mandala Putra",
+      "scheme": "National Competitive Research (Early-Career Lecturer)",
+      "year": 2025,
+      "link": "https://sinta.kemdiktisaintek.go.id/authors/profile/6770083/?view=researches"
+    },
+    {
+      "title": "Smart Office Platform for Digital Services and Archiving Using Optical Character Recognition",
+      "role": "Member",
+      "members": "Aulia Apriliani, Robi Kurniawan",
+      "scheme": "National Competitive Research (Early-Career Lecturer)",
+      "year": 2022,
+      "link": "https://sinta.kemdiktisaintek.go.id/authors/profile/6770083/?view=researches"
+    },
+    {
+      "title": "Braille Image to Text to Speech Translator System for the Visually Impaired Using Backpropagation Algorithm",
+      "role": "Leader",
+      "members": "Robi Kurniawan, Adrianti",
+      "scheme": "National Competitive Research (Early-Career Lecturer)",
+      "year": 2022,
+      "link": "https://sinta.kemdiktisaintek.go.id/authors/profile/6770083/?view=researches"
+    }
+  ]
+}

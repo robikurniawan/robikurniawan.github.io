@@ -12,5 +12,21 @@
     "image": "img/portfolio/nextdev.png",
     "description": "The NextDev is a search for and development of the best indonesia technology startup in social impact in 2017 the three of us (Arif Rahmat, Nani Rahayu, Robi Kurniawan) were selected as the top 20 finalists representing the city of Makassar to compete with selected startups throughout Indonesia.",
     "link": "https://www.telkomsel.com/about-us/blogs/finalis-nextdev-2017-kopitaniid-memanfaatkan-iot-untuk-mengembangkan-industri-kopi"
+  },
+
+  {
+    "title": "Berdayakan Petani Kopi Lokal #sapasulsel",
+    "subtitle": "Kompas TV",
+    "image": "img/kompas.png",
+    "description": "A live interview on Kompas TV's #SapaSulsel segment, discussing how KopiTani empowers local coffee farmers in South Sulawesi by connecting them directly with coffee lovers through technology.",
+    "link": "https://www.youtube.com/watch?v=wgMProB1G3w"
+  },
+  {
+    "title": "KopiTani, the platform that connects coffee lovers with Indonesian coffee farmers",
+    "subtitle": "E27.co",
+    "image": "img/kopitani_startup_profile_2.jpeg",
+    "description": "Indonesian coffee trade industry is considered promising enough for KopiTani to build an e-commerce platform for. Simply put, the KopiTani solution is an online marketplace for original Indonesian coffee beans; the platform also includes an element of farmers empowerment with the DokterKopi feature on it. The platform currently offers two types of coffee beans: Green beans and coffee beans",
+    "link": "https://e27.co/kopitani-connects-coffee-lovers-indonesian-coffee-farmers-20180104/"
   }
 ]
+

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Publications and Research - Robi Kurniawan">
+    <meta name="author" content="Robi Kurniawan">
+    <title>Publications — Robi Kurniawan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .pub-profiles {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+        .pub-profiles a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .pub-profiles a:hover {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+        .pub-profiles a i {
+            font-size: 1.1rem;
+        }
+        .research-interests {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+        .research-interests span {
+            padding: 6px 16px;
+            border-radius: 20px;
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .pub-section-title {
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+        }
+        .pub-card {
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        .pub-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+        .pub-card h3 {
+            font-size: 1.05rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+        }
+        .pub-card h3 a {
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+        .pub-card h3 a:hover {
+            color: var(--accent);
+        }
+        .pub-meta {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .pub-meta .authors {
+            color: var(--text-secondary);
+        }
+        .pub-meta .journal {
+            font-style: italic;
+        }
+        .pub-cited {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            margin-top: 0.5rem;
+            padding: 4px 12px;
+            border-radius: 20px;
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--accent);
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .research-card {
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        .research-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+        .research-card h3 {
+            font-size: 1.05rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.5;
+            color: var(--text-primary);
+        }
+        .research-card .research-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            font-size: 0.85rem;
+        }
+        .research-card .research-details span {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--text-muted);
+        }
+        .research-card .research-details span i {
+            color: var(--accent);
+            font-size: 0.8rem;
+        }
+        .role-badge {
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .role-leader {
+            background: rgba(99, 102, 241, 0.15);
+            color: var(--accent);
+        }
+        .role-member {
+            background: rgba(156, 163, 175, 0.15);
+            color: var(--text-muted);
+        }
+        .status-approved {
+            color: #10b981;
+        }
+        .pub-group {
+            margin-bottom: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">robikurniawan.github.io</a>
+            <button class="nav-toggle" aria-label="Toggle menu" onclick="toggleNav()">
+                <span class="nav-toggle-inner">
+                    <span class="line line-1"></span>
+                    <span class="line line-2"></span>
+                </span>
+            </button>
+        </div>
+    </nav>
+    <div class="nav-overlay" id="navOverlay">
+        <ul class="nav-links">
+            <li><a href="index.html" onclick="closeNav()">Home</a></li>
+            <li><a href="works.html" onclick="closeNav()">Works</a></li>
+            <li><a href="achievements.html" onclick="closeNav()">Achievements</a></li>
+            <li><a href="publications.html" onclick="closeNav()">Publications</a></li>
+            <li><a href="blog/index.html" onclick="closeNav()">Blog</a></li>
+        </ul>
+    </div>
+
+    <section style="padding-top: 6rem;">
+        <h2 class="section-title">Publications & Research</h2>
+        <div id="pubProfiles"></div>
+        <div id="pubInterests"></div>
+        <div id="pubArticles"></div>
+        <div id="pubResearches"></div>
+    </section>
+
+    <footer>
+        <p>Copyright &copy; 2015 - <span id="footerYear"></span><br>Dev With <i class="fas fa-heart heart"></i></p>
+    </footer>
+
+    <script>
+        function toggleNav() {
+            const overlay = document.getElementById('navOverlay');
+            const btn = document.querySelector('.nav-toggle');
+            overlay.classList.toggle('active');
+            btn.classList.toggle('active');
+            document.body.style.overflow = overlay.classList.contains('active') ? 'hidden' : '';
+        }
+        function closeNav() {
+            document.getElementById('navOverlay').classList.remove('active');
+            document.querySelector('.nav-toggle').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        window.addEventListener('scroll', () => {
+            document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
+        });
+        document.getElementById('footerYear').textContent = new Date().getFullYear();
+
+        fetch('data/publications.json')
+            .then(r => r.json())
+            .then(data => {
+                document.getElementById('pubProfiles').innerHTML = `
+                    <div class="pub-profiles">
+                        <a href="${data.scholar}" target="_blank"><i class="fas fa-graduation-cap"></i> Google Scholar</a>
+                        <a href="${data.sinta}" target="_blank"><i class="fas fa-book-open"></i> SINTA (ID: ${data.sintaId})</a>
+                    </div>`;
+
+                document.getElementById('pubInterests').innerHTML = `
+                    <div class="research-interests">
+                        ${data.researchInterests.map(r => '<span>' + r + '</span>').join('')}
+                    </div>`;
+
+                if (data.articles.length) {
+                    document.getElementById('pubArticles').innerHTML = `
+                        <div class="pub-group">
+                            <h3 class="pub-section-title"><i class="fas fa-file-alt"></i> Articles</h3>
+                            ${data.articles.map(a => `
+                                <div class="pub-card">
+                                    <h3><a href="${a.link}" target="_blank">${a.title}</a></h3>
+                                    <div class="pub-meta">
+                                        <div class="authors">${a.authors}</div>
+                                        <div><span class="journal">${a.journal}</span>, ${a.volume}, ${a.year}</div>
+                                    </div>
+                                    ${a.cited ? '<div class="pub-cited"><i class="fas fa-quote-left"></i> Cited by ' + a.cited + '</div>' : ''}
+                                </div>
+                            `).join('')}
+                        </div>`;
+                }
+
+                if (data.researches.length) {
+                    document.getElementById('pubResearches').innerHTML = `
+                        <div class="pub-group">
+                            <h3 class="pub-section-title"><i class="fas fa-flask"></i> Funded Research</h3>
+                            ${data.researches.map(r => `
+                                <div class="research-card">
+                                    <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.5rem;flex-wrap:wrap;">
+                                        <span class="role-badge ${r.role === 'Leader' ? 'role-leader' : 'role-member'}">${r.role}</span>
+                                        <span style="color:var(--text-muted);font-size:0.85rem;">${r.year}</span>
+                                    </div>
+                                    <h3 >${r.link ? '<a href="' + r.link + '" target="_blank" style="color:#fff;">' + r.title + '</a>' : r.title}</h3>
+                                    <div class="research-details">
+                                        <span><i class="fas fa-users"></i> ${r.members}</span>
+                                        <span><i class="fas fa-tag"></i> ${r.scheme}</span>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>`;
+                }
+            })
+            .catch(() => document.getElementById('pubArticles').innerHTML = '<p style="color:var(--text-muted)">Failed to load publications.</p>');
+    </script>
+    <script>
+        (function loadGoatCounter() {
+            fetch('data/analytics-config.json')
+                .then(function (r) { return r.json(); })
+                .then(function (cfg) {
+                    var code = cfg.goatcounterCode;
+                    if (!code) return;
+                    var s = document.createElement('script');
+                    s.async = true;
+                    s.dataset.goatcounter = 'https://' + code + '.goatcounter.com/count';
+                    s.src = '//gc.zgo.at/count.js';
+                    document.body.appendChild(s);
+                })
+                .catch(function () {});
+        })();
+    </script>
+</body>
+</html>
